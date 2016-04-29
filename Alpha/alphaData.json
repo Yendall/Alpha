@@ -1,0 +1,16 @@
+{  
+   "dataSet":[  
+      {  
+         "index":"1",
+         "imageURL":"alpha1",
+         "title":"Alpha Mind State: Easy Learning",
+         "musicURL":"http://www.airmaxstudios.com.au/AlphaDataStore/Alpha/Alpha1.mp3"
+      },
+	  {  
+         "index":"2",
+         "imageURL":"alpha2",
+         "title":"Alpha Mind State: Stress Relief",
+         "musicURL":"http://www.airmaxstudios.com.au/AlphaDataStore/Alpha/Alpha2.mp3"
+      }
+   ]
+}

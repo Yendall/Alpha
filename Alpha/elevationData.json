@@ -1,0 +1,39 @@
+{  
+   "dataSet":[  
+      {  
+         "index":"1",
+         "quotation":"Fall seven times, stand up eight.",
+         "author":"Japanese Proverb"
+      },
+	  {  
+         "index":"2",
+         "quotation":"Problems are not stop signs, they are guidelines.",
+         "author":"Robert Schuller"
+      },
+	  {  
+         "index":"3",
+         "quotation":"Tough times never last, but tough people do.",
+         "author":"Robert Schuller"
+      },
+	  {  
+         "index":"4",
+         "quotation":"Believe that life is worth living and your belief will help create the fact.",
+         "author":"William James"
+      },
+	  {  
+         "index":"5",
+         "quotation":"It doesn't matter how slow you go, as long as you don't stop.",
+         "author":"Confucius"
+      },
+	  {  
+         "index":"6",
+         "quotation":"The best way to predict the future, is to create it.",
+         "author":"Abraham Lincoln"
+      },
+	  {  
+         "index":"7",
+         "quotation":"In the middle of a difficulty lies opportunity.",
+         "author":"Albert Einstein"
+      }
+   ]
+}

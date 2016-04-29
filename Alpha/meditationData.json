@@ -1,0 +1,28 @@
+{  
+   "dataSet":[  
+      {  
+         "index":"1",
+         "image":"Candle_Staring",
+         "title":"Candle Staring",
+         "description":"Light a candle and stare at the flame. Clear your mind and observe the flame as it flickers."
+      },
+	  {  
+         "index":"2",
+         "image":"Breathing",
+         "title":"Breathing",
+         "description":"Close your eyes and focus on your breathing patterns. Allow your focus to broaden to your body and the pattern that flows through it."
+      },
+	  {  
+         "index":"3",
+         "image":"Observation",
+         "title":"Observation",
+         "description":"Close your eyes and focus on the spot an inch above your middle-brow. Begin to watch what your mind and body are feeling, thinking and doing at this present moment."
+      },
+	  {  
+         "index":"4",
+         "image":"Visual_Stimulus",
+         "title":"Visual Stimulus",
+         "description":"Close your eyes and picture an idyllic being or setting in your mind. Focus on the setting and let yourself embellish it as much as you need to."
+      }
+   ]
+}
