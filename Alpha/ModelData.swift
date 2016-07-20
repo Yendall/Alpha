@@ -8,163 +8,138 @@
 
 import Foundation
 import UIKit
-
-// Load all model data from JSON files for this assignment, this will be converted to a database
-// later.
+import Firebase
+import SwiftyJSON
 
 public class ModelData
 {
     // Singleton use
     static let sharedInstance = ModelData();
     
-    // SerializeJSON on first time initialisation
-    private init()
-    {
-        serializeJSON();
-    }
+    // Empty constructor
+    private init(){}
     
-    // Default data models for each section
+    // Default data models for each section in memory
     var meditationData  = [MeditationData]();
-    var elevationData   = [ElevationData]();
-    var alphaData       = [AlphaData]();
-    var thetaData       = [ThetaData]();
+    var alphaData       = [MusicDataNode]();
+    var thetaData       = [MusicDataNode]();
     var imageData       = [ImageData]();
+    var userData        = [User]();
+}
+
+// AVState data class
+class AVState
+{
+    var prefix      : String;
+    var state       : String;
     
-    // Function: Serializes JSON data and places into appropriate data models which are accessed through a
-    // Singleton Instance
-    func serializeJSON()
+    init(prefix: String, state: String)
     {
-        // Declare Meditation, Elevation, Alpha and Theta Datasets
-        let dataSets : [String] = ["meditationData","elevationData","alphaData","thetaData","imageData"];
-        
-        for dataTitle in dataSets
-        {
-            // JSON Deserialization and Parsing from local files (this will be expanded to JSON trees Firebase)
-            if let url = NSBundle.mainBundle().URLForResource(dataTitle, withExtension: "json") {
-                if NSFileManager.defaultManager().fileExistsAtPath(url.path!)
-                {
-                    // File has been found, read the contents and serialize the data based on the data set identifier.
-                    let data = NSData(contentsOfURL: url);
-                    do
-                    {
-                        // Create JSON data object from NSData model
-                        let object = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
-                        if let dictionary = object as? [String: AnyObject]
-                        {
-                            // Add data to data models relative to their identifier
-                            switch dataTitle
-                            {
-                                case "meditationData":
-                                    readJSONObject(dictionary,identifier: dataTitle);
-                                case "elevationData":
-                                    readJSONObject(dictionary,identifier: dataTitle);
-                                case "alphaData":
-                                    readJSONObject(dictionary,identifier: dataTitle);
-                                case "thetaData":
-                                    readJSONObject(dictionary,identifier: dataTitle);
-                                case "imageData":
-                                    readJSONObject(dictionary,identifier: dataTitle);
-                                default:
-                                    break;
-                            }
-                            
-                        }
-                    } catch{
-                        // File IO Error Handling needs to be implemented here
-                    }
-                }
-            }
-        }
+        self.prefix = prefix;
+        self.state = state;
+    }
+}
+
+// Response data class
+class ResponseData
+{
+    var date        : String;
+    var response    : String;
+    var feeling     : String;
+    
+    init (date: String, response: String, feeling: String)
+    {
+        self.date = date;
+        self.response = response;
+        self.feeling = feeling;
+    }
+}
+
+// User Data Class
+class User
+{
+    var uid         :   String;
+    var email       :   String;
+    var firstname   :   String;
+    var lastname    :   String;
+    var music       :   [MusicDataNode];
+    
+    init(uid: String, email: String, firstname: String, lastname: String)
+    {
+        self.uid = uid;
+        self.email = email;
+        self.firstname = firstname;
+        self.lastname = lastname;
+        self.music = [MusicDataNode]();
     }
     
+}
+// MusicDataNode class with a prefix for usage with Firebase
+class MusicDataNode
+{
+    var musicID     : String;
+    var prefix      : String;
+    var musicURL    : String;
+    var imageURL    : String;
+    var title       : String;
     
-    // Function: Reads JSON Object into guarded immutable variables which are inserted into an appropriate
-    // data model and appended to storage depending on the identifier passed in.
-    func readJSONObject(object: [String: AnyObject],identifier: String)
+    init(musicID: String, prefix: String, musicURL: String,imageURL: String, title: String)
     {
-        // If the file has no data, return cleanly and display an error to the debug terminal
-        guard let data = object["dataSet"] as? [[String: AnyObject]] else
-        {
-            debugPrint("file is empty");
-            _ = "Empty Data";
-            return;
-        }
-        // Loop through the data in each node and create objects relative to the identifier and append to the data storage.
-        for dataNode in data
-        {
-            
-            switch identifier
-            {
-                case "meditationData":
-                    guard
-                        let index = dataNode["index"] as? String,
-                        let title = dataNode["title"] as? String,
-                        let image = dataNode["image"] as? String,
-                        let description = dataNode["description"] as? String
-                        else
-                    {
-                        break;
-                    }
-                    let newData = MeditationData(index: Int(index)!,image: image,dataTitle: title,dataBody: description);
-                    meditationData.append(newData);
-                
-                case "elevationData":
-                    guard
-                        let index = dataNode["index"] as? String,
-                        let quotation = dataNode["quotation"] as? String,
-                        let author = dataNode["author"] as? String
-                        else
-                    {
-                        break;
-                    }
-                    let newData = ElevationData(index: Int(index)!,quotation: quotation,author: author);
-                    elevationData.append(newData);
-                
-                // Alpha data will be changed later to use a music object, which is obtained through
-                // data scraping. For now, it is hard-coded in JSON.
-                case "alphaData":
-                    guard
-                        let index = dataNode["index"] as? String,
-                        let imageURL = dataNode["imageURL"] as? String,
-                        let title = dataNode["title"] as? String,
-                        let musicURL = dataNode["musicURL"] as? String
-                    else
-                    {
-                        break;
-                    }
-                    
-                    let newData = AlphaData(index: Int(index)!,imageURL: imageURL,title: title, musicURL: musicURL);
-                    alphaData.append(newData);
-                
-                case "thetaData":
-                    guard
-                        let index = dataNode["index"] as? String,
-                        let imageURL = dataNode["imageURL"] as? String,
-                        let title = dataNode["title"] as? String,
-                        let musicURL = dataNode["musicURL"] as? String
-                    else
-                    {
-                        break;
-                    }
-                    
-                    let newData = ThetaData(index: Int(index)!, imageURL: imageURL, title: title, musicURL: musicURL);
-                    thetaData.append(newData);
-                
-                case "imageData":
-                    guard
-                        let index = dataNode["index"] as? String,
-                        let imageSRC = dataNode["imageSRC"] as? String
-                    else
-                    {
-                        break;
-                    }
-                    let newData = ImageData(index: Int(index)!, imageSRC: imageSRC);
-                    imageData.append(newData);
-                default:
-                    break
-                
-            }
-        }
+        self.musicID = musicID;
+        self.prefix = prefix;
+        self.musicURL = musicURL;
+        self.imageURL = imageURL;
+        self.title = title;
+    }
+}
+
+// MusicNode class with a prefix determining its type
+class MusicNode
+{
+    var musicID     : String;
+    var prefix      : String;
+    var musicURL    : String;
+    var title       : String;
+    var liked       : Bool;
+    
+    init(musicID: String, prefix: String, musicURL: String, title: String,liked: Bool)
+    {
+        self.musicID = musicID;
+        self.prefix = prefix;
+        self.musicURL = musicURL;
+        self.title = title;
+        self.liked = liked;
+    }
+}
+
+// Meditation Data Class (this will be modified later)
+class MeditationData
+{
+    var index       :   String;
+    var image       :   String;
+    var dataTitle   :   String;
+    var dataBody    :   String;
+    
+    init(index: String, image: String, dataTitle: String, dataBody: String)
+    {
+        self.index = index;
+        self.image = image;
+        self.dataTitle = dataTitle;
+        self.dataBody = dataBody;
+    }
+    
+}
+
+// Image Data Class
+class ImageData
+{
+    var index       :   Int;
+    var imageSRC    :   String;
+    
+    init(index: Int, imageSRC: String)
+    {
+        self.index = index;
+        self.imageSRC = imageSRC;
     }
 }
 
@@ -188,85 +163,5 @@ extension String
     func encryptXOR(key: UInt8) -> String
     {
         return String(bytes: self.utf8.map{$0 ^ key}, encoding: NSUTF8StringEncoding) ?? ""
-    }
-}
-
-// Meditation Data Class (this will be modified later)
-class MeditationData
-{
-    var index       :   Int;
-    var image       :   String;
-    var dataTitle   :   String;
-    var dataBody    :   String;
-    
-    init(index: Int, image: String, dataTitle: String, dataBody: String)
-    {
-        self.index = index;
-        self.image = image;
-        self.dataTitle = dataTitle;
-        self.dataBody = dataBody;
-    }
-    
-}
-
-// Elevation Data Class (this will be modified later)
-class ElevationData
-{
-    var index       :   Int;
-    var quotation   :   String;
-    var author      :   String;
-    
-    init(index: Int, quotation: String, author: String)
-    {
-        self.index = index;
-        self.quotation = quotation;
-        self.author = author;
-    }
-}
-
-// Theta Data Class (this will be modified later)
-class ThetaData
-{
-    var index       :   Int;
-    var imageURL    :   String;
-    var title       :   String;
-    var musicURL    :   String;
-    
-    init(index: Int, imageURL: String, title: String, musicURL: String)
-    {
-        self.index = index;
-        self.imageURL = imageURL;
-        self.title = title;
-        self.musicURL = musicURL;
-    }
-}
-
-// Alpha Data Class (this will be modified later)
-class AlphaData
-{
-    var index       :   Int;
-    var imageURL    :   String;
-    var title       :   String;
-    var musicURL    :   String;
-    
-    init(index: Int, imageURL: String,title: String, musicURL: String)
-    {
-        self.index = index;
-        self.imageURL = imageURL;
-        self.title = title;
-        self.musicURL = musicURL;
-    }
-}
-
-// Image Data Class
-class ImageData
-{
-    var index       :   Int;
-    var imageSRC    :   String;
-    
-    init(index: Int, imageSRC: String)
-    {
-        self.index = index;
-        self.imageSRC = imageSRC;
     }
 }

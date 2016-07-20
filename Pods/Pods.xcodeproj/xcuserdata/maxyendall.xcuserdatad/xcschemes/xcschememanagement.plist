@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MMWormhole.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Alpha.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -25,6 +30,11 @@
 			<false/>
 		</dict>
 		<key>Pods-AlphaUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-MusicPlayer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,7 +52,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>13AD874D7AD7170E7014F13145942F93</key>
+		<key>13B6502B83F7DF630DBB85D53480E8F0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,12 +62,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4742383FA7763315E941AE68D9FD47D3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4DA0F2ABADA81A0CA10170216A1939E4</key>
+		<key>4B860562CFE5A2F6A9EEEF61EAA60420</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,12 +72,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A5AE1F1F52CD178695C3C6F61C834783</key>
+		<key>8AFDBBCADD5D85F15E6A826E99024A7E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>B7AC9326D819482593FE118E915409D7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C59A433E7E098A694FB9B7E3FD230554</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D3F21F56DED249C8CE60E719144F5903</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DA2550D7D94491C4B4EA8F3435FEEC4B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

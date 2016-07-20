@@ -1,12 +1,16 @@
 PODS:
   - Alamofire (3.3.1)
   - Firebase (2.5.1)
+  - MMWormhole (2.0.0):
+    - MMWormhole/Core (= 2.0.0)
+  - MMWormhole/Core (2.0.0)
   - SQLite.swift (0.10.1)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.3)
   - Firebase (>= 2.5.1)
+  - MMWormhole (~> 2.0.0)
   - SQLite.swift (~> 0.10)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
@@ -22,9 +26,10 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
+  MMWormhole: 0cd3fd35a9118b2e2d762b499f54eeaace0be791
   SQLite.swift: 6a6e4b034efc317ce4e203b6af2d3024fee2b570
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 9a173eff14e2aee2f96877959c16d8aa6034dbd9
+PODFILE CHECKSUM: 974edde92896d31bda849a175bd20d02b5473f17
 
 COCOAPODS: 1.0.0.beta.6

@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Visual_Stimulus.png",
+      "filename" : "Visual_Stimulus_iPad.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Visual_Stimulus_iPad-2.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Visual_Stimulus_iPad-1.png",
       "scale" : "3x"
     }
   ],

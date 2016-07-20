@@ -9,4 +9,6 @@
 #ifndef Alpha_Bridging_Header_h
 #define Alpha_Bridging_Header_h
 
+#import <MMWormhole/MMWormhole.h>
+
 #endif /* Alpha_Bridging_Header_h */

@@ -82,14 +82,7 @@ class MeditationController: UIViewController {
         titleField.text = model.meditationData[dataPointer].dataTitle;
         descriptionField.text = model.meditationData[dataPointer].dataBody;
     }
-
-    override func shouldAutorotate() -> Bool {
-        return false
-    }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.Portrait
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -105,9 +98,11 @@ class MeditationController: UIViewController {
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(MeditationController.handleGesture(_:)))
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(MeditationController.handleGesture(_:)))
         
+        // Set directions for swiping
         leftSwipe.direction = .Left
         rightSwipe.direction = .Right
         
+        // Add the gestures to the view
         view.addGestureRecognizer(leftSwipe)
         view.addGestureRecognizer(rightSwipe)
     }
