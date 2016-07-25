@@ -23,7 +23,8 @@ class AlamofireController
     init()
     {
         // Initialise the call base and API key
-        apiKey = "YaA_9mvfkwd9ccK_LkDTpgeF";
+        // API Key Removed from Github
+        apiKey = "";
         baseQuote = "http://quotes.rest/quote.json?api_key=" + apiKey;
     }
     
